@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Notification</title>
+</head>
+<body>
+    <script>
+        // Function to check if the message matches the criteria
+        
+        // Function to check if the message matches the criteria
+        function checkMessage(message) {
+            const data = JSON.parse(message);
+            return data && data.messageType === "ROUND_END_WAIT";
+        }
+
+        // Connect to WebSocket
+        function connectWebSocket() {
+            var ws = new WebSocket('wss://www.sportybet.com/ws/ng/games/ping-pong/v1/game');
+
+            // Be notified when a message is about to be sent
+            ws.addEventListener('message', function(event) {
+                const message = event.data;
+                if (checkMessage(message)) {
+                    // Trigger a notification (replace with your notification method)
+                    alert('A message matching the criteria is about to be sent!');
+                }
+            });
+
+            // Reconnect WebSocket if connection closes
+            ws.addEventListener('close', function(event) {
+                console.log('WebSocket connection closed. Reconnecting...');
+                setTimeout(connectWebSocket, 2000); // Reconnect after 2 seconds
+            });
+        }
+
+        // Connect WebSocket when the page loads
+        window.addEventListener('load', connectWebSocket);
+    </script>
+</body>
+</html>

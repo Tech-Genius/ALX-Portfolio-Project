@@ -1,0 +1,650 @@
+<style>
+    #home {
+        /* color: #f26522 !important; */
+        border-radius: 5px;
+        background: linear-gradient(#f15005ee, #832b03);
+        width: fit-content !important;
+        padding: 12px !important;
+        box-shadow: 3px 3px 3px rgb(10, 8, 8);
+    }
+
+    #home:hover {
+        color: white !important;
+        border: 1px solid #f26522;
+        background: transparent;
+        transition: 1s;
+    }
+</style>
+{% extends 'base.html' %}
+
+{% block title %} Meal-tab🥄 | Home {% endblock %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+
+<div class="homepage-wrapper">
+    <div class="background-wrapper">
+
+        <div class="background1">
+            <div class="background1-boxes">
+                <div class="box" id="text" data-aos="fade-right" data-aos-duration="1200">
+                    <h3>Enjoy Our <br> Delicious Meal</h3>
+                    <p>Our delivery team is ever ready to deliver your favourite meals to your door step anytime, any
+                        day.
+                    </p>
+                    <a href="{% url 'shop' %}"><button>Visit Our Shop <i class="fa fa-cart-plus" aria-hidden="true"
+                                style="font-size: 21px;"></i></button></a>
+                </div>
+                <div class="box" id="img" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="{% static 'images/hero.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="ad_lead_to_promo">
+        <div class="ad_lead_to_promo_inner">
+
+            <div class="ad_lead_to_promo_box" id="img">
+                <img id="large_screen" src="{% static 'images/chef-pointing-lateral-white-background.jpg' %}" alt="" data-aos="fade-right"
+                    data-aos-duration="1200">
+                
+                    <img id="small_screen" src="{% static 'images/chef-presenting-something-white-background.jpg' %}" alt="" data-aos="fade-right"
+                    data-aos-duration="1200">
+           
+            </div>
+            <div class="ad_lead_to_promo_box" id="text" data-aos="fade-left" data-aos-duration="1200">
+                <h3>Enjoy <span>Mouth Watering</span> <br> Discounts On Our <br> <span>Best Deals</span></h3>
+                <p>We tend to reduce the prices on some of our products every week, quickly grab them before the discounts get expired</p>
+                    <div class="ad_auth_button" id="first_button">
+                <a href="#promo"><button data-aos="fade-up" data-aos-duration="1200">View Discounts</button></a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+    <div class="ad_lead_to_auth">
+        <div class="ad_lead_to_auth_inner">
+
+
+            <div class="ad_lead_to_auth_box" id="text" data-aos="fade-right" data-aos-duration="1200">
+                <h3>Get <span>Authenticated</span> <br> To Enjoy Your <br> <span>Shopping</span></h3>
+                <p>Sign Up today to get full access to all our features, existing users can also login to their account below</p>
+
+                <div class="ad_auth_button">
+                    <a href="{% url 'signup' %}"><button data-aos="fade-up" id="brown" data-aos-duration="1200">Sign Up</button></a>
+                    <a href="{% url 'login' %}"><button data-aos="fade-up" id="blue" data-aos-duration="1200">Sign In</button></a>
+                </div>
+            </div>
+
+
+            <div class="ad_lead_to_auth_box" id="img">
+                <img src="{% static 'images/chef-making-ok-sign-white-background.jpg' %}" alt="" data-aos="fade-left"
+                    data-aos-duration="1200">
+
+                    <!-- <img id="small_screen" src="{% static 'images/chef-with-his-arms-crossed-white-background_1368-22244-removebg-preview.png' %}" alt="">
+             -->
+                </div>
+
+            
+        </div>
+    </div>
+
+
+
+
+
+    <div class="ad_lead_to_promo">
+        <div class="ad_lead_to_promo_inner">
+
+            <div class="ad_lead_to_promo_box" id="img">
+                <img id="large_screen" src="{% static 'images/chef-pointing-lateral-white-background.jpg' %}" alt="" data-aos="fade-right"
+                data-aos-duration="1200">
+            
+                <img id="small_screen" src="{% static 'images/chef-presenting-something-white-background.jpg' %}" alt="" data-aos="fade-right"
+                data-aos-duration="1200">
+       
+            </div>
+            <div class="ad_lead_to_promo_box" id="text" data-aos="fade-left" data-aos-duration="1200">
+                <h3>Reserve  <span>A Table</span> <br> Or Reserve Our Chefs <br> <span>For Your Event</span></h3>
+                <p>Book a table in our restaurant and come at your own to enjoy your meal. You can also reserve our our top notch chefs for your <br>upcoming events.
+                    </p>
+
+                    <div class="ad_auth_button">
+                        <a href="{% url 'table-reservation' %}"><button data-aos="fade-up" id="blue" data-aos-duration="1200">Book Table</button></a>
+                        <a href="{% url 'event-reservation' %}"><button data-aos="fade-up" id="brown" data-aos-duration="1200">Book Event</button></a>
+                    </div>
+                </div>       
+
+          </div>
+        </div>
+    </div>
+    
+  
+
+
+
+
+
+
+    <div class="promo"><a name="promo"></a>
+
+        <div class="hot-fire">
+            <h3 class="hot" style="text-align: center">Best Offers</h3>
+
+            <!-- <h3 class="fire">🔥</h3> -->
+        </div>
+
+
+        <div class="promo_top_text1">
+            <hr>
+            <p>From Our Shop</p>
+            <hr>
+        </div>
+
+        <div class="promo_inner">
+            <div class="promo_box_wrapper">
+                {% for promo in promos %}
+                <a href="{% url 'item' promo.slug %}">
+                    <div class="promo_block">
+
+
+                        <div class="promo_box">
+                            <img src="{{promo.image.url}}" alt="">
+
+
+                            <div class="promo-percentage">
+                                <h3>{{promo.percentage_off}}</h3>
+
+                                <div class="percent">
+                                    <p><span>%</span></p>
+                                    <p>Off</p>
+                                </div>
+
+                            </div>
+
+                            <div class="promo-title">
+                                <h4>{{promo.title}}</h4>
+                            </div>
+
+                            <div class="promo-days-left">
+                                <h4>{{promo.discount_days_left}} days Remaining </h4>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </a>
+
+
+
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- <div class="menu_wrapper">
+
+        <div class="menu_top_text1">
+            <hr>
+            <p>Food Menu</p>
+            <hr>
+        </div>
+
+        <div class="menu_top_text2">
+            <h3>Most Popular Items</h3>
+        </div>
+
+        <div class="tab_head">
+
+            <div class="breakfast" tabindex="0">
+                <i class="fa fa-coffee"></i>
+                <div class="text">
+                    <p>Special</p>
+                    <h4>Breakfast</h4>
+                </div>
+            </div>
+
+            <div class="lunch" tabindex="1">
+                <i class="fa fa-spoon"></i>
+                <div class="text">
+                    <p>Popular</p>
+                    <h4>Lunch</h4>
+                </div>
+            </div>
+
+            <div class="dinner" tabindex="2">
+                <i class="fa fa-cutlery"></i>
+                <div class="text">
+                    <p>Lovely</p>
+                    <h4>Dinner</h4>
+                </div>
+            </div>
+
+        </div>
+
+       
+        <div class="menu_content" id="breakfast">
+            {% for breakfast in breakfasts %}
+            <div class="l">
+                <div class="menu_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                    <img src="{{breakfast.image.url}}" alt="">
+                    <div class="text">
+                        <h3>{{breakfast.title}}</h3>
+                     
+                        <form action="">
+                            <div class="cart">
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+
+        <div class="menu_content" id="lunch">
+            {% for lunch in lunchs %}
+            <div class="l">
+                <div class="menu_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                    <img src="{{lunch.image.url}}" alt="">
+                    <div class="text">
+                        <h3>{{lunch.title}}</h3>
+                    
+                        <form action="">
+                            <div class="cart">
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+        <div class="menu_content" id="dinner">
+            {% for dinner in dinners %}
+            <div class="l">
+                <div class="menu_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                    <img src="{{dinner.image.url}}" alt="">
+                    <div class="text">
+                        <h3>{{dinner.title}}</h3>
+                 
+                        <form action="">
+                            <div class="cart">
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+    <div class="how_it_works">
+        <h3>How Does It Work</h3>
+        <div class="how_it_works_holder">
+            <div class="how_it_works_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                <i class="fa fa-shopping-bag fa-spin"></i>
+
+                <h4>Select Order</h4>
+                <p>Check over hundreds of menus to pick your favorite food.</p>
+
+            </div>
+
+            <div class="how_it_works_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                <i class="fa fa-map-marker fa-spin"></i>
+
+                <h4>Enter Your Location</h4>
+                <p>Enter the location where your food should be delivered.</p>
+            </div>
+
+            <div class="how_it_works_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                <i class="fa fa-credit-card fa-spin"></i>
+
+                <h4>Make Payment </h4>
+                <p>It's quick, safe, and simple. Select several methods of payment.</p>
+            </div>
+
+            <div class="how_it_works_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                <i class="fa fa-birthday-cake fa-spin"></i>
+
+                <h4>Enjoy Your Meal</h4>
+                <p>Food is made and delivered directly to your requested location.</p>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="popular_wrapper">
+        <div class="popular">
+
+
+            <div class="popular_heading">
+
+                <h3>Ready For Delivery</h3>
+
+            </div>
+
+            <div class="inside">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+
+                    <div class="carousel-inner ">
+                        {% for popular in populars %}
+                        <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="10000">
+                            <div class="inners">
+                                <div class="innersPro">
+                                    <img src="{{popular.image.url}}" alt="">
+
+                                    <div class="popular_text_wrapper">
+                                        <div class="popular_text animate__animated animate__zoom">
+                                            <span class="name">{{popular.title}} @</span>
+                                            <p> &#8358;{{popular.price}}</p>
+                                            <a href="{% url 'item' popular.slug %}"><button>Order Now <i
+                                                        class="fa fa-angle-right"></i></button></a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                        <span class="visually-hidden"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                        data-bs-slide="next">
+
+
+                        <i class="fa fa-angle-right"></i>
+                        <span class="visually-hidden"></span>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="ad_lead_to_categories">
+
+        <div class="ad_lead_to_categories1">
+            <div class="ad_lead_box" id="text" data-aos="fade-right" data-aos-duration="1200">
+                <h3>Best deals <br> <span>Crispy Sandwiches</span></h3>
+                <p>Enjoy the large size of sandwiches. <br> Complete your meal with the perfect slice of sandwiches.</p>
+                <a href="{% url 'shop' %}"><button>Proceed To Order <i class="fa fa-angle-right"></i></button></a>
+            </div>
+            <div class="ad_lead_box" data-aos="fade-left" data-aos-duration="1200" id="img">
+                <img src="{% static 'images/crispy-sandwiches.png' %}" alt="">
+            </div>
+
+
+        </div>
+
+        <div class="ad_lead_to_categories2">
+
+            <div class="ad_lead_box" data-aos="fade-right" data-aos-duration="1200" id="img">
+                <img src="{% static 'images/fried-chicken.png' %}" alt="">
+            </div>
+
+            <div class="ad_lead_box" id="text" data-aos="fade-left" data-aos-duration="1200">
+                <h3>Celebrate parties <br> with <span>Fried Chicken</span></h3>
+                <p>Get the best fried chicken smeared with a lip smacking <br> lemon chili flavor. Check out best deals
+                    for fried chicken.</p>
+                <a href="{% url 'shop' %}"><button>Proceed To Order <i class="fa fa-angle-right"></i></button></a>
+            </div>
+
+        </div>
+
+        <div class="ad_lead_to_categories3">
+            <div class="ad_lead_box" id="text" data-aos="fade-right" data-aos-duration="1200">
+                <h3>Wanna eat hot & <br> <span>spicy Pizza?</span></h3>
+                <p>Pair up with a friend and enjoy the hot and crispy <br> pizza pops. Try it with the best deals.</p>
+                <a href="{% url 'shop' %}"><button>Proceed To Order <i class="fa fa-angle-right"></i></button></a>
+            </div>
+            <div class="ad_lead_box" data-aos="fade-left" data-aos-duration="1200" id="img">
+                <img src="{% static 'images/pizza.png' %}" alt="">
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="chefs_wrapper">
+        <div class="text">
+            <h3>Our Master Chefs</h3>
+        </div>
+        <div class="chefs_inner">
+            {% for chef in chefs %}
+
+            <div class="chefs_box" data-aos="zoom-in-up" data-aos-duration="1200">
+                <div class="chef_image">
+                    <img src="{{chef.image.url}}" alt="">
+                </div>
+                <h3>{{chef.name}}</h3>
+
+                <p>{{chef.position}}</p>
+
+                <div class="social" data-aos="fade-in" data-aos-duration="1200">
+                    <a href="https://{{chef.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a href="https://{{chef.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://{{chef.instagram}}" target="_blank"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="contacsection-wrapper">
+        <div class="contact-wrapper">
+    
+            <div class="contact-background1">
+    
+    
+    {% if name %}
+                <div class="contact_box_for_filled_form_wrapper">
+                <div class="contact_box_for_filled_form" data-aos="zoom-in-down" data-aos-duration="1000"
+                    data-aos-delay="500">
+                    <div class="box" id="img">
+                        <img src="{% static 'images/password-reset-complete.png' %}" alt="">
+                    </div>
+    
+                    <div class="box" id="text">
+                        <h3> Hello {{name}},Your message have been noted by the management, we'll get in touch with you shortly
+                  <br> Thank You.</h3>
+                  <div class="contact_form_filled_buttons">
+                   <button id="cancel_contact_form_overlay">Close <i class="fa fa-times" aria-hidden="true"></i> </button>
+                 </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+           {% endif %}     
+    
+    
+    
+    
+    <div class="contact_heading">
+        <h3>Contact Us</h3>
+        <p>DO you have any complain, a review, or you want to talk to the management directly, this section is for you. </p>
+    </div>
+    
+                <div class="contact_box">
+    
+                    <section class="myform-area">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+    
+                                    <div class="form-area login-form">
+    
+    
+                                        <div class="form-content" data-aos="fade-right" data-aos-duration="1200">
+                                            <img src="{% static 'images/chef-311680.png' %}" alt="">
+    
+                                        </div>
+    
+    
+    
+    
+                                        <div class="form-input" data-aos="fade-left" data-aos-duration="1200">
+                                            <div class="form-wrap">
+                                                <h2>Fill The Form Below To Contact The Management.</h2>
+                                                <form method="POST">
+                    
+    
+                                                    {% csrf_token %}
+                                                                                   
+    
+                                                    <div class="form-group">
+                                                        <input type="text" id="" value="{{request.user.username}}" name="name" required>
+    
+                                                        <label>Full Name</label>
+                                                    </div>
+    
+                                                    <div class="form-group">
+    
+                                                        <input type="email" id="" value="{{request.user.email}}" name="email" required>
+                                                        <label>Email</label>
+                                                    </div>
+    
+    
+                                                    <div class="form-group">
+                                                        <input type="tel" id="" name="phone" required>
+                                                        <label>Phone</label>
+                                                    </div>
+    
+    
+    
+    
+                                                    <div class="form-group">
+    
+                                                        <input type="text" id="" name="user_message" required>
+                                                        <label>Your Message</label>
+                                                    </div>
+    
+    
+    
+    
+    
+                                                    <div class="myform-button">
+                                                        <button class="myform-btn" type="submit">Send Message</button>
+                                                    </div>
+    
+                                                </form>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    
+    
+                </div>
+    
+    
+    
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+{% endblock content %}
